@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/23 12:54:34 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:53:07 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,19 @@ typedef struct map
 	size_t	i;
 } map_stuff;
 
+// Enemies
+void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
+void		ft_loop_map(params *pms, size_t *x, size_t *y);
+void		ft_build_enemies(params *pms);
+void		ft_enemies(params *pms);
+int			ft_enemy_motion(params *pms);
+
 // Flood Fill
 void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
 size_t	ft_count_collectibles(char **map);
 char	**ft_map_copy(char **map);
-int	ft_floodfill(params *pms);
-int	ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit);
+int		ft_floodfill(params *pms);
+int		ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit);
 
 // Map Check
 char		**ft_map_to_array(params *pms, const char *file);
@@ -126,10 +133,6 @@ size_t		ft_map_height(char	*map[]);
 // Map
 void		ft_map_characters(params *pms, pictures *all, char character, size_t *i);
 int			ft_map_to_screen(char **map, params *pms);
-void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
-void		ft_loop_map(params *pms, size_t *x, size_t *y);
-void		ft_build_enemies(params *pms);
-void		ft_enemies(params *pms);
 
 // Move Utils
 size_t		ft_find_player_x(char **map);

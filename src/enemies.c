@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/23 13:21:19 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:04:32 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,51 @@ void	ft_enemies(params *pms)
 		i++;
 	}
 
+}
+int		ft_enemy_motion(params *pms)
+{
+	enemy	*current;
+	int		dir;
+	size_t	x;
+	size_t	y;
+
+	current = pms->enemy_list->head;
+	x = current->x;
+	y = current->y;
+	while (current)
+	{
+		dir = rand() % 4 + 1;
+		if (dir == UP && pms->map[(current->y) - 1][current->x] == '0')
+		{
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->enemy1->img, x * S, (y - 1) * S);
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->bckg->img, x * S, y * S);
+		}
+		else if (dir == DOWN && pms->map[(current->y) + 1][current->x] == '0')
+		{
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->enemy1->img, x * S, (y + 1) * S);
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->bckg->img, x * S, y * S);
+		}
+		else if (dir == LEFT && pms->map[current->y][(current->x) - 1] == '0')
+		{
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->enemy1->img, (x - 1) * S, y * S);
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->bckg->img, x * S, y * S);
+		}
+		else if (dir == RIGHT && pms->map[current->y][(current->x) + 1] == '0')
+		{
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->enemy1->img, (x + 1) * S, y * S);
+			mlx_put_image_to_window(pms->game, \
+			pms->win, pms->all->bckg->img, x * S, y * S);
+		}
+		current = current->next;
+	}
+	mlx_do_sync(pms->game);
+	usleep(100);
+	return (0);
 }
