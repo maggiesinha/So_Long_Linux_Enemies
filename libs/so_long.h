@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/18 12:13:34 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:54:34 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #define DOWN 2
 #define LEFT 3
 #define RIGHT 4
+#define ENEMY_RATIO 10
 
 typedef struct images_list
 {
@@ -76,6 +77,14 @@ typedef struct pics
 	image	*enemy2;
 } pictures;
 
+typedef struct enemies_info
+{
+	struct enemies_info	*head;
+	struct enemies_info	*next;
+	size_t	x;
+	size_t	y;
+} enemy;
+
 typedef struct parameters
 {
 	void		*game;
@@ -92,7 +101,6 @@ typedef struct parameters
 	enemy		*enemy_list;
 } params;
 
-
 typedef struct map
 {
 	size_t	players;
@@ -101,14 +109,6 @@ typedef struct map
 	size_t	a;
 	size_t	i;
 } map_stuff;
-
-typedef struct enemies_info
-{
-	enemy	*head;
-	enemy	*next;
-	size_t	x;
-	size_t	y;
-} enemy;
 
 // Flood Fill
 void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
@@ -126,6 +126,10 @@ size_t		ft_map_height(char	*map[]);
 // Map
 void		ft_map_characters(params *pms, pictures *all, char character, size_t *i);
 int			ft_map_to_screen(char **map, params *pms);
+void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
+void		ft_loop_map(params *pms, size_t *x, size_t *y);
+void		ft_build_enemies(params *pms);
+void		ft_enemies(params *pms);
 
 // Move Utils
 size_t		ft_find_player_x(char **map);

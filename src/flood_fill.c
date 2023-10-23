@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maggie <maggie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:59:15 by maggie            #+#    #+#             */
-/*   Updated: 2023/10/12 01:19:16 by maggie           ###   ########.fr       */
+/*   Updated: 2023/10/23 12:01:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_floodfill(params *pms)
 	size_t	p_x;
 	size_t	p_y;
 	int		valid;
-	
+
 	exit = malloc(sizeof(int));
 	if (!exit)
 		return (0);
@@ -78,8 +78,10 @@ int	ft_floodfill(params *pms)
 
 void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y)
 {
-	if (map_copy[y][x] == 'E' || map_copy[y][x - 1] == 'E' || map_copy[y + 1][x] == 'E' || map_copy[y - 1][x] == 'E')
-		*exit = 1;	
+	if (map_copy[y][x] == 'E' || map_copy[y][x - 1] == 'E' || \
+	map_copy[y + 1][x] == 'E' || map_copy[y - 1][x] == 'E' || \
+	map_copy[y][x + 1] == 'E')
+		*exit = 1;
 }
 
 int	ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit)
@@ -94,7 +96,7 @@ int	ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit)
 	{
 		map_copy[y][x - 1] = 'V';
 		ft_ffalgorithm(map_copy, x - 1, y, exit);
-	}	
+	}
 	if (map_copy[y + 1][x] == '0' || map_copy[y + 1][x] == 'C')
 	{
 		map_copy[y + 1][x] = 'V';
