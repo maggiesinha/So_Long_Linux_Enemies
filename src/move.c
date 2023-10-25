@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:41:40 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/17 19:55:46 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:28:31 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	ft_rendering_right(params *pms)
 	ft_print_moves(pms);
 }
 
-
 void	ft_move_left(params *pms)
 {
 	char	*player;
@@ -140,6 +139,7 @@ void	ft_move_left(params *pms)
 	else
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pl->img, pms->p_x * S, pms->p_y * S);
+	pms->player_state = LEFT;
 }
 
 void	ft_move_right(params *pms)
@@ -169,7 +169,9 @@ void	ft_move_right(params *pms)
 	else
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pr->img, pms->p_x * S, pms->p_y * S);
+	pms->player_state = RIGHT;
 }
+
 void	ft_rendering_up(params *pms)
 {
 	int	i;
@@ -197,6 +199,7 @@ void	ft_rendering_up(params *pms)
 		usleep(4000);
 	}
 	ft_print_moves(pms);
+	pms->player_state = UP;
 }
 
 void	ft_move_up(params *pms)
@@ -226,6 +229,7 @@ void	ft_move_up(params *pms)
 	else
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pu->img, pms->p_x * S, pms->p_y * S);
+	pms->player_state = DOWN;
 }
 
 void	ft_rendering_down(params *pms)
@@ -266,6 +270,8 @@ void	ft_move_down(params *pms)
 	pms->p_y = ft_find_player_y(pms->map);
 	player = &(pms->map)[pms->p_y][pms->p_x];
 	next = &((pms->map)[pms->p_y + 1][(pms->p_x)]);
+	if (*next == 'B')
+		return ;
 	if (*next == 'E' && pms->collectibles == 0)
 	{
 		mlx_put_image_to_window(pms->game, pms->win, \
@@ -284,4 +290,5 @@ void	ft_move_down(params *pms)
 	else
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pd->img, pms->p_x * S, pms->p_y * S);
+	pms->player_state = DOWN;
 }

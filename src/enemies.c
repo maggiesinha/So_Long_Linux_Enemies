@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   enemies.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/23 14:04:32 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:54:40 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
+
+
+void	ft_print_map(params *pms)
+{
+	size_t	y = 0;
+	size_t	x = 0;
+
+	while ((pms->map)[y])
+	{
+		x = 0;
+		while ((pms->map)[y][x])
+		{
+			ft_printf("%c", (pms->map)[y][x]);
+			x++;
+		}
+		ft_printf("\n");
+		y++;
+	}
+	ft_printf("\n\n\n");
+}
 
 void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
 {
@@ -61,7 +81,7 @@ void	ft_build_enemies(params *pms)
 		return ;
 	place = rand() % pms->bckg_n;
 	while (place > 1)
-	{
+	{mlx_do_sync(pms->game);
 		if (pms->map[y][x] == '0')
 		{
 			//ft_loop_map(pms, &x, &y);
@@ -100,25 +120,26 @@ void	ft_build_enemies(params *pms)
 }
 
 
-void	ft_enemies(params *pms)
+int	ft_enemies(params *pms)
 {
 	size_t			i;
 
 	i = 0;
 	pms->enemies_n = (pms->bckg_n) / ENEMY_RATIO;
 	if (!(pms->enemies_n))
-		return ;
+		return (0);
 	pms->enemy_list = malloc(sizeof(enemy));
 	if (!(pms->enemy_list))
-		return ;
+		return (0);
 	pms->enemy_list->head = NULL;
 	while (i < pms->enemies_n)
 	{
 		ft_build_enemies(pms);
 		i++;
-	}
-
+	}		
+	return (1);
 }
+
 int		ft_enemy_motion(params *pms)
 {
 	enemy	*current;
@@ -127,42 +148,54 @@ int		ft_enemy_motion(params *pms)
 	size_t	y;
 
 	current = pms->enemy_list->head;
-	x = current->x;
-	y = current->y;
 	while (current)
 	{
+		x = current->x;
+		y = current->y;
 		dir = rand() % 4 + 1;
-		if (dir == UP && pms->map[(current->y) - 1][current->x] == '0')
+		if (dir == UP && pms->map[y - 1][x] == '0')
 		{
 			mlx_put_image_to_window(pms->game, \
 			pms->win, pms->all->enemy1->img, x * S, (y - 1) * S);
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->bckg->img, x * S, y * S);
+			ft_map_characters(pms, x, y);
+			current->y = y - 1;
+			pms->map[y][x] = '0';
+			pms->map[y - 1][x] = 'B';
+			ft_map_characters(pms, x, y);
 		}
-		else if (dir == DOWN && pms->map[(current->y) + 1][current->x] == '0')
+		else if (dir == DOWN && pms->map[y + 1][x] == '0')
 		{
 			mlx_put_image_to_window(pms->game, \
 			pms->win, pms->all->enemy1->img, x * S, (y + 1) * S);
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->bckg->img, x * S, y * S);
+			ft_map_characters(pms, x, y);
+			current->y = y + 1;
+			pms->map[y][x] = '0';
+			pms->map[y + 1][x] = 'B';
+			ft_map_characters(pms, x, y);
 		}
-		else if (dir == LEFT && pms->map[current->y][(current->x) - 1] == '0')
+		else if (dir == LEFT && pms->map[current->y][x - 1] == '0')
 		{
 			mlx_put_image_to_window(pms->game, \
 			pms->win, pms->all->enemy1->img, (x - 1) * S, y * S);
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->bckg->img, x * S, y * S);
+			ft_map_characters(pms, x, y);
+			current->x = x - 1;
+			pms->map[y][x] = '0';
+			pms->map[y][x - 1] = 'B';
+			ft_map_characters(pms, x, y);
 		}
-		else if (dir == RIGHT && pms->map[current->y][(current->x) + 1] == '0')
+		else if (dir == RIGHT && pms->map[current->y][x + 1] == '0')
 		{
 			mlx_put_image_to_window(pms->game, \
 			pms->win, pms->all->enemy1->img, (x + 1) * S, y * S);
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->bckg->img, x * S, y * S);
+			ft_map_characters(pms, x, y);
+			current->x = x + 1;
+			pms->map[y][x] = '0';
+			pms->map[y][x + 1] = 'B';
+			ft_map_characters(pms, x, y);
 		}
 		current = current->next;
-	}
+}
 	mlx_do_sync(pms->game);
-	usleep(100);
+	usleep(300000);
 	return (0);
 }

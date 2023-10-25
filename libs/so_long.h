@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/23 13:53:07 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:18:32 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct parameters
 	size_t		bckg_n;
 	size_t		enemies_n;
 	enemy		*enemy_list;
+	int			player_state;
 } params;
 
 typedef struct map
@@ -114,7 +115,7 @@ typedef struct map
 void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
 void		ft_loop_map(params *pms, size_t *x, size_t *y);
 void		ft_build_enemies(params *pms);
-void		ft_enemies(params *pms);
+int			ft_enemies(params *pms);
 int			ft_enemy_motion(params *pms);
 
 // Flood Fill
@@ -131,8 +132,9 @@ int			ft_check_walls_around(char **map);
 size_t		ft_map_height(char	*map[]);
 
 // Map
-void		ft_map_characters(params *pms, pictures *all, char character, size_t *i);
+void		ft_map_characters(params *pms, size_t x, size_t y);
 int			ft_map_to_screen(char **map, params *pms);
+void		ft_put_player(params *pms, size_t x, size_t y);
 
 // Move Utils
 size_t		ft_find_player_x(char **map);
