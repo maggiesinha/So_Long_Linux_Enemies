@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemies.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/25 12:54:40 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:52:30 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
 		current->next->next = NULL;
 	}
 	mlx_put_image_to_window(pms->game, \
-	pms->win, pms->all->enemy1->img, x * S, y * S);
+	pms->win, pms->all->enemyr1->img, x * S, y * S);
 }
 
 void	ft_loop_map(params *pms, size_t *x, size_t *y)
@@ -67,135 +67,51 @@ void	ft_loop_map(params *pms, size_t *x, size_t *y)
 	}
 }
 
+
+
 void	ft_build_enemies(params *pms)
 {
 	enemy	*current_enemy;
 	size_t	place;
-	size_t	x;
-	size_t	y;
+	size_t	*xy;
 
-	y = 1;
-	x = 1;
+	xy = malloc(sizeof(int) * 2);
+	if (!xy)
+		return ;
+	xy[0] = 1;
+	xy[1] = 1;
 	current_enemy = malloc(sizeof(enemy));
 	if (!current_enemy)
 		return ;
 	place = rand() % pms->bckg_n;
 	while (place > 1)
-	{mlx_do_sync(pms->game);
-		if (pms->map[y][x] == '0')
-		{
-			//ft_loop_map(pms, &x, &y);
-					if (pms->map[y][(x) + 1])
-						(x)++;
-					else
-					{
-						(y)++;
-						(x) = 0;
-					}
-			place--;
-		}
-		else
-			//ft_loop_map(pms, &x, &y);
-					if (pms->map[y][(x) + 1])
-						(x)++;
-					else
-					{
-						(y)++;
-						(x) = 0;
-					}
-	}
-	while (pms->map[y][x] != '0')
 	{
-			//ft_loop_map(pms, &x, &y);
-					if (pms->map[y][(x) + 1])
-						(x)++;
-					else
-					{
-						(y)++;
-						(x) = 0;
-					}
+		if (pms->map[xy[1]][xy[0]] == '0')
+			place--;
+		ft_loop_map(pms, &(xy[0]), &(xy[1]));
 	}
-	ft_add_enemy(pms, current_enemy, x, y);
+	while (pms->map[xy[1]][xy[0]] != '0')
+		ft_loop_map(pms, &(xy[0]), &(xy[1]));
+	ft_add_enemy(pms, current_enemy, xy[0], xy[1]);
 	pms->bckg_n--;
 }
 
 
-int	ft_enemies(params *pms)
+void	ft_enemies(params *pms)
 {
 	size_t			i;
 
 	i = 0;
 	pms->enemies_n = (pms->bckg_n) / ENEMY_RATIO;
 	if (!(pms->enemies_n))
-		return (0);
+		return ;
 	pms->enemy_list = malloc(sizeof(enemy));
 	if (!(pms->enemy_list))
-		return (0);
+		return ;
 	pms->enemy_list->head = NULL;
 	while (i < pms->enemies_n)
 	{
 		ft_build_enemies(pms);
 		i++;
-	}		
-	return (1);
-}
-
-int		ft_enemy_motion(params *pms)
-{
-	enemy	*current;
-	int		dir;
-	size_t	x;
-	size_t	y;
-
-	current = pms->enemy_list->head;
-	while (current)
-	{
-		x = current->x;
-		y = current->y;
-		dir = rand() % 4 + 1;
-		if (dir == UP && pms->map[y - 1][x] == '0')
-		{
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->enemy1->img, x * S, (y - 1) * S);
-			ft_map_characters(pms, x, y);
-			current->y = y - 1;
-			pms->map[y][x] = '0';
-			pms->map[y - 1][x] = 'B';
-			ft_map_characters(pms, x, y);
-		}
-		else if (dir == DOWN && pms->map[y + 1][x] == '0')
-		{
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->enemy1->img, x * S, (y + 1) * S);
-			ft_map_characters(pms, x, y);
-			current->y = y + 1;
-			pms->map[y][x] = '0';
-			pms->map[y + 1][x] = 'B';
-			ft_map_characters(pms, x, y);
-		}
-		else if (dir == LEFT && pms->map[current->y][x - 1] == '0')
-		{
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->enemy1->img, (x - 1) * S, y * S);
-			ft_map_characters(pms, x, y);
-			current->x = x - 1;
-			pms->map[y][x] = '0';
-			pms->map[y][x - 1] = 'B';
-			ft_map_characters(pms, x, y);
-		}
-		else if (dir == RIGHT && pms->map[current->y][x + 1] == '0')
-		{
-			mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->enemy1->img, (x + 1) * S, y * S);
-			ft_map_characters(pms, x, y);
-			current->x = x + 1;
-			pms->map[y][x] = '0';
-			pms->map[y][x + 1] = 'B';
-			ft_map_characters(pms, x, y);
-		}
-		current = current->next;
-}
-	mlx_do_sync(pms->game);
-	usleep(300000);
-	return (0);
+	}
 }

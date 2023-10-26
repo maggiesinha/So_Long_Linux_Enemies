@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/25 12:17:30 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:50:43 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_map_characters(params *pms, size_t x, size_t y)
 			pms->win, pms->all->exit->img, x * S, y * S);
 	if (pms->map[y][x] == 'B')
 		mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->enemy1->img, x * S, y * S);		
+			pms->win, pms->all->enemyr1->img, x * S, y * S);
 }
 
 int	ft_map_to_screen(char **map, params *pms)

@@ -6,7 +6,7 @@
 #    By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 14:46:34 by mvalerio          #+#    #+#              #
-#    Updated: 2023/10/23 13:53:40 by mvalerio         ###   ########.fr        #
+#    Updated: 2023/10/26 10:46:35 by mvalerio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 SRC = src/main.c src/map_check.c src/map.c src/move_utils.c src/move.c \
-src/pictures.c src/utils.c src/flood_fill.c src/enemies.c
+src/pictures.c src/utils.c src/flood_fill.c src/enemies.c src/enemy_motion.c \
+src/rendering_player.c
 
 OBJS = $(SRC:.c=.o)
 

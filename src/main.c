@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:23:45 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/25 12:20:20 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:31:26 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main(int argc, char *argv[])
 	pms->win = mlx_new_window(pms->game, ft_strlen((pms->map)[0]) * S, \
 		ft_arraylen((pms->map)) * S, "Maggieland");
 	pms->player_state = RIGHT;
+	pms->key_press = 0;
 	ft_map_to_screen(pms->map, pms);
-	if (ft_enemies(pms))
-		mlx_loop_hook(pms->game, ft_enemy_motion, pms);
-	mlx_hook(pms->win, 2, 1L << 0, ft_key_press, pms);
-	mlx_hook(pms->win, 17, 0, ft_close_window, pms);	
+	ft_enemies(pms);
+	mlx_loop_hook(pms->game, ft_motion, pms);
+	mlx_key_hook(pms->win, ft_key_press, pms);
+	mlx_hook(pms->win, 17, 0, ft_close_window, pms);
 	mlx_loop(pms->game);
 }

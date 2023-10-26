@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/25 12:18:32 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:26:57 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 #define DOWN 2
 #define LEFT 3
 #define RIGHT 4
-#define ENEMY_RATIO 10
+#define ENEMY_RATIO 20
+#define ENEMY_TIME 100000
+#define RENDERING 800
+
 
 typedef struct images_list
 {
@@ -73,8 +76,14 @@ typedef struct pics
 	image	*dying9;
 	image	*dying10;
 	image	*moves;
-	image	*enemy1;
-	image	*enemy2;
+	image	*enemyl1;
+	image	*enemyl2;
+	image	*enemyr1;
+	image	*enemyr2;
+	image	*enemyu1;
+	image	*enemyu2;
+	image	*enemyd1;
+	image	*enemyd2;
 } pictures;
 
 typedef struct enemies_info
@@ -83,6 +92,7 @@ typedef struct enemies_info
 	struct enemies_info	*next;
 	size_t	x;
 	size_t	y;
+	size_t	dir;
 } enemy;
 
 typedef struct parameters
@@ -100,6 +110,7 @@ typedef struct parameters
 	size_t		enemies_n;
 	enemy		*enemy_list;
 	int			player_state;
+	int			key_press;
 } params;
 
 typedef struct map
@@ -115,8 +126,15 @@ typedef struct map
 void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
 void		ft_loop_map(params *pms, size_t *x, size_t *y);
 void		ft_build_enemies(params *pms);
-int			ft_enemies(params *pms);
-int			ft_enemy_motion(params *pms);
+void		ft_enemies(params *pms);
+
+// Enemy Motion
+int			ft_motion(params *pms);
+void		ft_render_e_left(params *pms, size_t x, size_t y);
+void		ft_render_e_right(params *pms, size_t x, size_t y);
+void		ft_render_e_up(params *pms, size_t x, size_t y);
+void		ft_render_e_down(params *pms, size_t x, size_t y);
+void		ft_player_move(params *pms);
 
 // Flood Fill
 void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
@@ -149,6 +167,13 @@ void		ft_move_down(params *pms);
 // Pictures
 image		*ft_make_picture_xpm(char *relative_path, params *par);
 pictures	*ft_build_all_images(params *par);
+void		ft_build_all_images_player(params *pms, pictures *comps);
+
+// Rendering Player
+void	ft_render_p_left(params *pms);
+void	ft_render_p_right(params *pms);
+void	ft_render_p_up(params *pms);
+void	ft_render_p_down(params *pms);
 
 // Utils
 void	ft_errors(params *pms, char	*message, int i);

@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:30:59 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/17 20:56:46 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:52:14 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,22 @@ void	ft_freeparams(params *pms, int i)
 		free(pms->all->dying10);
 		mlx_destroy_image(pms->game, pms->all->moves->img);
 		free(pms->all->moves);
-		mlx_destroy_image(pms->game, pms->all->enemy1->img);
-		free(pms->all->enemy1);
-		mlx_destroy_image(pms->game, pms->all->enemy2->img);
-		free(pms->all->enemy2);
+		mlx_destroy_image(pms->game, pms->all->enemyl1->img);
+		free(pms->all->enemyl1);
+		mlx_destroy_image(pms->game, pms->all->enemyl2->img);
+		free(pms->all->enemyl2);
+		mlx_destroy_image(pms->game, pms->all->enemyr1->img);
+		free(pms->all->enemyr1);
+		mlx_destroy_image(pms->game, pms->all->enemyr2->img);
+		free(pms->all->enemyr2);
+		mlx_destroy_image(pms->game, pms->all->enemyu1->img);
+		free(pms->all->enemyu1);
+		mlx_destroy_image(pms->game, pms->all->enemyu2->img);
+		free(pms->all->enemyu2);
+		mlx_destroy_image(pms->game, pms->all->enemyd1->img);
+		free(pms->all->enemyd1);
+		mlx_destroy_image(pms->game, pms->all->enemyd2->img);
+		free(pms->all->enemyd2);
 		free (pms->all);
 	}
 	if (i == 1 || i == 2)
@@ -101,13 +113,17 @@ int	ft_key_press(int keycode, params *pms)
 	if (keycode == 0xff1b)
 		ft_close_window(pms);
 	else if (keycode == 0xff51)
-		ft_move_left(pms);
+		pms->key_press = LEFT;
+		//ft_move_left(pms);
 	else if (keycode == 0xff52)
-		ft_move_up(pms);
+		pms->key_press = UP;
+		//ft_move_up(pms);
 	else if (keycode == 0xff53)
-		ft_move_right(pms);
+		pms->key_press = RIGHT;
+		//ft_move_right(pms);
 	else if (keycode == 0xff54)
-		ft_move_down(pms);
+		pms->key_press = DOWN;
+		//ft_move_down(pms);
 	return (0);
 }
 
