@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:41:40 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 10:48:24 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:14:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ void	ft_move_left(params *pms)
 		ft_render_p_left(pms);
 	}
 	else
+	{
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pl->img, pms->p_x * S, pms->p_y * S);
+		usleep(RENDERING * S);
+	}
 	pms->player_state = LEFT;
 }
 
@@ -105,8 +108,11 @@ void	ft_move_right(params *pms)
 		ft_render_p_right(pms);
 	}
 	else
+	{
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pr->img, pms->p_x * S, pms->p_y * S);
+		usleep(RENDERING * S);
+	}
 	pms->player_state = RIGHT;
 }
 
@@ -133,8 +139,11 @@ void	ft_move_up(params *pms)
 		ft_render_p_up(pms);
 	}
 	else
+	{
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pu->img, pms->p_x * S, pms->p_y * S);
+		usleep(RENDERING * S);
+	}
 	pms->player_state = DOWN;
 }
 
@@ -161,7 +170,10 @@ void	ft_move_down(params *pms)
 		ft_render_p_down(pms);
 	}
 	else
+	{
 		mlx_put_image_to_window(pms->game, pms->win, \
 		(pms->all)->btfly_pd->img, pms->p_x * S, pms->p_y * S);
+		usleep(RENDERING * S);
+	}
 	pms->player_state = DOWN;
 }

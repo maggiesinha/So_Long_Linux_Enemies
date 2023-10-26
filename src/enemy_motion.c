@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:33:14 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 12:36:21 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:21:36 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,72 @@ void	ft_player_move(params *pms)
 
 void	ft_death(params *pms, enemy* current)
 {
-	(void)current;
 	if (pms->map[current->y][current->x] == 'P')
 	{
-		usleep(1000000);
+		if (current->dir == UP)
+		{
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_u->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyu1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_u->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyu1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+
+		}
+		if (current->dir == DOWN)
+		{
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_d->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyd1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_d->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyd1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+
+		}
+		if (current->dir == LEFT)
+		{
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_l->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyl1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_l->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyl1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+
+		}
+		if (current->dir == RIGHT)
+		{
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_r->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyr1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemydeath_r->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+			mlx_put_image_to_window(pms->game, pms->win, pms->all->enemyr1->img, current->x * S, current->y * S);
+			usleep(250000);
+			mlx_do_sync(pms->game);
+
+		}
 		ft_close_window(pms);
 	}
 }

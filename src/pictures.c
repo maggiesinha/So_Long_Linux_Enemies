@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:27:37 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 11:56:08 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:44:13 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ pictures	*ft_build_all_images(params *pms)
 	comps->enemyu2 = ft_make_picture_xpm("Images/enemy_u2.xpm", pms);
 	comps->enemyd1 = ft_make_picture_xpm("Images/enemy_d1.xpm", pms);
 	comps->enemyd2 = ft_make_picture_xpm("Images/enemy_d2.xpm", pms);
+	comps->enemydeath_u = ft_make_picture_xpm("Images/enemydeath_u.xpm", pms);
+	comps->enemydeath_d = ft_make_picture_xpm("Images/enemydeath_d.xpm", pms);
+	comps->enemydeath_l = ft_make_picture_xpm("Images/enemydeath_l.xpm", pms);
+	comps->enemydeath_r = ft_make_picture_xpm("Images/enemydeath_r.xpm", pms);
 
 	return (comps);
 }

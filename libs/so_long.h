@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 12:26:57 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:27:13 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define DOWN 2
 #define LEFT 3
 #define RIGHT 4
-#define ENEMY_RATIO 20
+#define ENEMY_RATIO 25
 #define ENEMY_TIME 100000
 #define RENDERING 800
 
@@ -84,6 +84,10 @@ typedef struct pics
 	image	*enemyu2;
 	image	*enemyd1;
 	image	*enemyd2;
+	image	*enemydeath_u;
+	image	*enemydeath_d;
+	image	*enemydeath_l;
+	image	*enemydeath_r;
 } pictures;
 
 typedef struct enemies_info
@@ -129,6 +133,7 @@ void		ft_build_enemies(params *pms);
 void		ft_enemies(params *pms);
 
 // Enemy Motion
+void	ft_death(params *pms, enemy* current);
 int			ft_motion(params *pms);
 void		ft_render_e_left(params *pms, size_t x, size_t y);
 void		ft_render_e_right(params *pms, size_t x, size_t y);
