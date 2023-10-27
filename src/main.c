@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:23:45 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 13:06:47 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:57:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 	pms->key_press = 0;
 	ft_map_to_screen(pms->map, pms);
 	ft_enemies(pms);
-	mlx_loop_hook(pms->game, ft_motion, pms);
+	mlx_loop_hook(pms->game, ft_rendering, pms);
 	mlx_key_hook(pms->win, ft_key_press, pms);
 	mlx_hook(pms->win, 17, 0, ft_close_window, pms);
 	mlx_loop(pms->game);

@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 13:27:13 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:28:49 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 #define DOWN 2
 #define LEFT 3
 #define RIGHT 4
-#define ENEMY_RATIO 25
+#define ENEMY_RATIO 15
 #define ENEMY_TIME 100000
-#define RENDERING 800
+#define RENDERING 5000
 
 
 typedef struct images_list
@@ -97,6 +97,13 @@ typedef struct enemies_info
 	size_t	x;
 	size_t	y;
 	size_t	dir;
+	void	*e1_img;
+	void	*e2_img;
+	size_t	e_next_x;
+	size_t	e_next_y;
+	int		i_xsignal;
+	int		i_ysignal;
+	int		kill;
 } enemy;
 
 typedef struct parameters
@@ -115,6 +122,14 @@ typedef struct parameters
 	enemy		*enemy_list;
 	int			player_state;
 	int			key_press;
+	void		*p1_img;
+	void		*p2_img;
+	void		*p3_img;
+	void		*p4_img;
+	size_t		p_next_x;
+	size_t		p_next_y;
+	int			p_i_xsignal;
+	int			p_i_ysignal;
 } params;
 
 typedef struct map
@@ -131,15 +146,20 @@ void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
 void		ft_loop_map(params *pms, size_t *x, size_t *y);
 void		ft_build_enemies(params *pms);
 void		ft_enemies(params *pms);
+void		ft_print_map(params *pms);
 
 // Enemy Motion
-void	ft_death(params *pms, enemy* current);
+void		ft_death(params *pms, enemy* current);
 int			ft_motion(params *pms);
 void		ft_render_e_left(params *pms, size_t x, size_t y);
 void		ft_render_e_right(params *pms, size_t x, size_t y);
 void		ft_render_e_up(params *pms, size_t x, size_t y);
 void		ft_render_e_down(params *pms, size_t x, size_t y);
 void		ft_player_move(params *pms);
+
+void		ft_set_player_frames(params *pms);
+void		ft_set_enemy_frames(params *pms);
+int			ft_rendering (params *pms);
 
 // Flood Fill
 void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
@@ -168,6 +188,8 @@ void		ft_move_left(params *pms);
 void		ft_move_up(params *pms);
 void		ft_move_right(params *pms);
 void		ft_move_down(params *pms);
+void		ft_win(params *pms, size_t x, size_t y);
+
 
 // Pictures
 image		*ft_make_picture_xpm(char *relative_path, params *par);

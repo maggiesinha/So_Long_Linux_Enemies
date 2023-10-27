@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:30:59 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:14 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/27 09:35:39 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +114,12 @@ int	ft_key_press(int keycode, params *pms)
 		ft_close_window(pms);
 	else if (keycode == 0xff51)
 		pms->key_press = LEFT;
-		//ft_move_left(pms);
 	else if (keycode == 0xff52)
 		pms->key_press = UP;
-		//ft_move_up(pms);
 	else if (keycode == 0xff53)
 		pms->key_press = RIGHT;
-		//ft_move_right(pms);
 	else if (keycode == 0xff54)
 		pms->key_press = DOWN;
-		//ft_move_down(pms);
 	return (0);
 }
 
