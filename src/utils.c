@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:30:59 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/27 09:35:39 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:11:13 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@ void	ft_errors(params *pms, char	*message, int i)
 	ft_freeparams(pms, i);
 	free(pms);
 	exit (1);
+}
+
+void	ft_free_enemies(params *pms)
+{
+	enemy	*current;
+	enemy	*next;
+
+	if (!pms->enemies_n)
+		return ;
+	next = pms->enemy_list->head;
+	while (next)
+	{
+		current = next;
+		next = current->next;
+		free (current);
+	}
+	free (pms->enemy_list);
+	return ;
 }
 
 void	ft_freeparams(params *pms, int i)
@@ -102,7 +120,16 @@ void	ft_freeparams(params *pms, int i)
 		free(pms->all->enemyd1);
 		mlx_destroy_image(pms->game, pms->all->enemyd2->img);
 		free(pms->all->enemyd2);
+		mlx_destroy_image(pms->game, pms->all->enemydeath_u->img);
+		free(pms->all->enemydeath_u);
+		mlx_destroy_image(pms->game, pms->all->enemydeath_d->img);
+		free(pms->all->enemydeath_d);
+		mlx_destroy_image(pms->game, pms->all->enemydeath_l->img);
+		free(pms->all->enemydeath_l);
+		mlx_destroy_image(pms->game, pms->all->enemydeath_r->img);
+		free(pms->all->enemydeath_r);
 		free (pms->all);
+		ft_free_enemies(pms);
 	}
 	if (i == 1 || i == 2)
 		ft_free_arraystring(pms->map);

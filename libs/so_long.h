@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/27 13:28:49 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:46:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ void		ft_render_e_right(params *pms, size_t x, size_t y);
 void		ft_render_e_up(params *pms, size_t x, size_t y);
 void		ft_render_e_down(params *pms, size_t x, size_t y);
 void		ft_player_move(params *pms);
-
 void		ft_set_player_frames(params *pms);
 void		ft_set_enemy_frames(params *pms);
 int			ft_rendering (params *pms);

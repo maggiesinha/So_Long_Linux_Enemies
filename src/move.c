@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:41:40 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 13:14:01 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:46:22 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_win(params *pms, size_t x, size_t y)
 	(pms->all)->dying10->img, x * S, y * S);
 	mlx_do_sync(pms->game);
 	usleep(100000);
+	ft_close_window(pms);
 }
 
 void	ft_move_left(params *pms)

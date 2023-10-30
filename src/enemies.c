@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:30 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:07:51 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_build_enemies(params *pms)
 	size_t	place;
 	size_t	*xy;
 
-	xy = malloc(sizeof(int) * 2);
+	xy = malloc(sizeof(size_t) * 2);
 	if (!xy)
 		return ;
 	xy[0] = 1;
@@ -92,8 +92,10 @@ void	ft_build_enemies(params *pms)
 	}
 	while (pms->map[xy[1]][xy[0]] != '0')
 		ft_loop_map(pms, &(xy[0]), &(xy[1]));
+	current_enemy->kill = 0;
 	ft_add_enemy(pms, current_enemy, xy[0], xy[1]);
 	pms->bckg_n--;
+	free (xy);
 }
 
 

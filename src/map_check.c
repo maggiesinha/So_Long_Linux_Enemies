@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maggie <maggie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:21:52 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/12 01:26:43 by maggie           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:26:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	**ft_map_to_array(params *pms, const char *file)
 	return (map_array);
 }
 
-
 int	ft_map_comp_check(char **map, params *pms)
 {
 	map_stuff	maps;
@@ -77,12 +76,8 @@ int	ft_map_comp_check(char **map, params *pms)
 
 int	ft_check_walls_around(char **map)
 {
-	int	total_rows;
-	int	total_columns;
 	int i;
 
-	total_columns = ft_strlen(map[0]);
-	total_rows = ft_arraylen(map);
 	i = 0;
 	while (map[0][i])
 	{
@@ -91,16 +86,16 @@ int	ft_check_walls_around(char **map)
 		i++;
 	}
 	i = 0;
-	while (map[total_rows - 1][i])
+	while (map[ft_arraylen(map) - 1][i])
 	{
-		if (map[total_rows - 1][i] != '1')
+		if (map[ft_arraylen(map) - 1][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 0;
 	while (map[i])
 	{
-		if ((map[i][0] != '1') || (map[i][total_columns - 1] != '1'))
+		if ((map[i][0] != '1') || (map[i][ft_strlen(map[0]) - 1] != '1'))
 			return (0);
 		i++;
 	}

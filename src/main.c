@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:23:45 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/27 10:57:01 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:20:37 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char *argv[])
 		ft_errors(pms, "Error", 0);
 	pms->map = ft_map_to_array(pms, argv[1]);
 	if (!ft_map_comp_check(pms->map, pms) || \
-		!ft_map_height(pms->map) || !ft_check_walls_around(pms->map) || !ft_floodfill(pms))
+		!ft_map_height(pms->map) || !ft_check_walls_around(pms->map) || \
+		!ft_floodfill(pms))
 		ft_errors(pms, "Error", 1);
 	pms->game = mlx_init();
 	pms->win = mlx_new_window(pms->game, ft_strlen((pms->map)[0]) * S, \
