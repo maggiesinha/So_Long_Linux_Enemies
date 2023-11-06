@@ -1,16 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendering_player.c                                 :+:      :+:    :+:   */
+/*   rendering2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 10:37:13 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 12:10:53 by mvalerio         ###   ########.fr       */
+/*   Created: 2023/11/06 11:25:18 by mvalerio          #+#    #+#             */
+/*   Updated: 2023/11/06 12:23:08 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
+
+int		ft_rendering (params *pms)
+{
+	int		i;
+	enemy	*current;
+
+	i = S;
+	if (pms->key_press == 0)
+		return (0);
+	pms->p_x = ft_find_player_x(pms->map);
+	pms->p_y = ft_find_player_y(pms->map);
+	ft_set_player_frames(pms);
+	ft_set_enemy_frames(pms);
+	ft_render_pixel(pms, i);
+	if (pms->enemies_n > 0)
+	{
+		current = pms->enemy_list->head;
+		while (current)
+		{
+			current->x = current->e_next_x;
+			current->y = current->e_next_y;
+			if (current->kill)
+				ft_death(pms, current);
+			current = current->next;
+		}
+	}
+	if (pms->moved)
+		ft_print_moves(pms);
+	return (0);
+}
 
 void	ft_render_p_left(params *pms)
 {
@@ -38,7 +68,6 @@ void	ft_render_p_left(params *pms)
 		mlx_do_sync(pms->game);
 		usleep(RENDERING);
 	}
-	ft_print_moves(pms);
 }
 
 void	ft_render_p_right(params *pms)
@@ -67,7 +96,6 @@ void	ft_render_p_right(params *pms)
 		mlx_do_sync(pms->game);
 		usleep(RENDERING);
 	}
-	ft_print_moves(pms);
 }
 
 void	ft_render_p_up(params *pms)
@@ -96,7 +124,6 @@ void	ft_render_p_up(params *pms)
 		mlx_do_sync(pms->game);
 		usleep(RENDERING);
 	}
-	ft_print_moves(pms);
 }
 void	ft_render_p_down(params *pms)
 {
@@ -124,5 +151,4 @@ void	ft_render_p_down(params *pms)
 		mlx_do_sync(pms->game);
 		usleep(RENDERING);
 	}
-	ft_print_moves(pms);
 }

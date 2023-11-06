@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:21:43 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/30 10:46:01 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:19:56 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct parameters
 	size_t		p_next_y;
 	int			p_i_xsignal;
 	int			p_i_ysignal;
+	int			moved;
 } params;
 
 typedef struct map
@@ -142,70 +143,105 @@ typedef struct map
 } map_stuff;
 
 // Enemies
+
+			// 1
 void		ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y);
-void		ft_loop_map(params *pms, size_t *x, size_t *y);
 void		ft_build_enemies(params *pms);
 void		ft_enemies(params *pms);
-void		ft_print_map(params *pms);
 
-// Enemy Motion
-void		ft_death(params *pms, enemy* current);
-int			ft_motion(params *pms);
-void		ft_render_e_left(params *pms, size_t x, size_t y);
-void		ft_render_e_right(params *pms, size_t x, size_t y);
-void		ft_render_e_up(params *pms, size_t x, size_t y);
-void		ft_render_e_down(params *pms, size_t x, size_t y);
-void		ft_player_move(params *pms);
-void		ft_set_player_frames(params *pms);
+			// 2
+void		ft_enemy_not_move(params *pms, enemy *current);
+void		ft_enemy_directions(params *pms, int dir, enemy *current, size_t xy[2]);
 void		ft_set_enemy_frames(params *pms);
+
+			// Set Directions
+void		ft_set_enemy_up(params *pms, enemy *current, size_t x, size_t y);
+void		ft_set_enemy_down(params *pms, enemy *current, size_t x, size_t y);
+void		ft_set_enemy_left(params *pms, enemy *current, size_t x, size_t y);
+void		ft_set_enemy_right(params *pms, enemy *current, size_t x, size_t y);
+
+// Keys
+int			ft_key_press(int keycode, params *pms);
+void		ft_key_up(params *pms);
+void		ft_key_down(params *pms);
+void		ft_key_left(params *pms);
+void		ft_key_right(params *pms);
+
+// Rendering
+			// 1
+void		ft_render1(params *pms, int i);
+void		ft_render2(params *pms, int i);
+void		ft_render3(params *pms, int i);
+void		ft_render4(params *pms, int i);
+void		ft_render_pixel(params *pms, int i);
+
+			// 2
 int			ft_rendering (params *pms);
+void		ft_render_p_left(params *pms);
+void		ft_render_p_right(params *pms);
+void		ft_render_p_up(params *pms);
+void		ft_render_p_down(params *pms);
 
-// Flood Fill
-void	ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
-size_t	ft_count_collectibles(char **map);
-char	**ft_map_copy(char **map);
-int		ft_floodfill(params *pms);
-int		ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit);
-
-// Map Check
-char		**ft_map_to_array(params *pms, const char *file);
-int			ft_map_comp_check(char **map, params *pms);
-int			ft_check_walls_around(char **map);
-size_t		ft_map_height(char	*map[]);
+// Death
+void		ft_death_animation_up(params *pms, enemy *current);
+void		ft_death_animation_down(params *pms, enemy *current);
+void		ft_death_animation_left(params *pms, enemy *current);
+void		ft_death_animation_right(params *pms, enemy *current);
+void		ft_death(params *pms, enemy* current);
 
 // Map
+
+			// 1
+void		ft_print_map(params *pms);
+void		ft_loop_map(params *pms, size_t *x, size_t *y);
+char		*ft_map_to_string(char *line, char *temp, char* map_string, int map_fd);
+char		**ft_map_to_array(params *pms, const char *file);
+int			ft_map_comp_check(char **map, params *pms);
+
+			// 2
+int			ft_check_walls_around(char **map);
+size_t		ft_map_height(char *map[]);
 void		ft_map_characters(params *pms, size_t x, size_t y);
 int			ft_map_to_screen(char **map, params *pms);
-void		ft_put_player(params *pms, size_t x, size_t y);
 
-// Move Utils
-size_t		ft_find_player_x(char **map);
-size_t		ft_find_player_y(char **map);
-
-// Move
-void		ft_move_left(params *pms);
-void		ft_move_up(params *pms);
-void		ft_move_right(params *pms);
-void		ft_move_down(params *pms);
-void		ft_win(params *pms, size_t x, size_t y);
-
+// Flood Fill
+char		**ft_map_copy(char **map);
+int			ft_floodfill(params *pms);
+void		ft_exit_found(char **map_copy, int *exit, size_t x, size_t y);
+int			ft_ffalgorithm(char **map_copy, size_t x, size_t y, int *exit);
+size_t		ft_count_collectibles(char **map);
 
 // Pictures
 image		*ft_make_picture_xpm(char *relative_path, params *par);
-pictures	*ft_build_all_images(params *par);
 void		ft_build_all_images_player(params *pms, pictures *comps);
+void		ft_build_all_images_enemy(params *pms, pictures *comps);
+pictures	*ft_build_all_images(params *pms);
 
-// Rendering Player
-void	ft_render_p_left(params *pms);
-void	ft_render_p_right(params *pms);
-void	ft_render_p_up(params *pms);
-void	ft_render_p_down(params *pms);
+// Player
+			// 1
+void		ft_eat_collectible(params *pms);
+void		ft_set_player_frames(params *pms);
+void		ft_put_player(params *pms, size_t x, size_t y);
 
-// Utils
-void	ft_errors(params *pms, char	*message, int i);
-void	ft_freeparams(params *pms, int i);
-int		ft_key_press(int keycode, params *pms);
-int		ft_close_window (params *pms);
-void	ft_print_moves(params *pms);
+			// 2
+size_t		ft_find_player_x(char **map);
+size_t		ft_find_player_y(char **map);
+void		ft_print_moves(params *pms);
+
+// End Program
+
+			// 1
+void		ft_win(params *pms, size_t x, size_t y);
+void		ft_win2(params *pms, size_t x, size_t y);
+void		ft_errors(params *pms, char *message, int i);
+void		ft_free_enemies(params *pms);
+void		ft_freeparams_enemies(params *pms);
+
+			// 2
+void		ft_freeparams_dying(params *pms);
+void		ft_freeparams_player2(params *pms);
+void		ft_freeparams_player(params *pms);
+void		ft_freeparams(params *pms, int i);
+int			ft_close_window(params *pms);
 
 # endif

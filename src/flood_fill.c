@@ -6,12 +6,11 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:59:15 by maggie            #+#    #+#             */
-/*   Updated: 2023/10/23 12:01:01 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:41:41 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
-
 
 size_t	ft_count_collectibles(char **map)
 {

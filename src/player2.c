@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_utils.c                                       :+:      :+:    :+:   */
+/*   player2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 11:12:39 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/11 12:18:32 by mvalerio         ###   ########.fr       */
+/*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
+/*   Updated: 2023/11/06 11:50:59 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ size_t	ft_find_player_y(char **map)
 		i[0]++;
 	}
 	return (0);
+}
+
+void	ft_print_moves(params *pms)
+{
+	static int	moves = 0;
+	char		*move_count;
+
+	mlx_put_image_to_window(pms->game, pms->win, \
+	(pms->all)->moves->img, 15, 15);
+	moves++;
+	move_count = ft_itoa(moves);
+	mlx_string_put(pms->game, pms->win, 35, 45, 0xffffff, move_count);
+	free (move_count);
 }

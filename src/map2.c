@@ -6,27 +6,12 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/26 11:50:43 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:47:35 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_put_player(params *pms, size_t x, size_t y)
-{
-	if (pms->player_state == UP)
-		mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->btfly_pu->img, x * S, y * S);
-	if (pms->player_state == DOWN)
-		mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->btfly_pd->img, x * S, y * S);
-	if (pms->player_state == LEFT)
-		mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->btfly_pl->img, x * S, y * S);
-	if (pms->player_state == RIGHT)
-		mlx_put_image_to_window(pms->game, \
-			pms->win, pms->all->btfly_pr->img, x * S, y * S);
-}
 
 void	ft_map_characters(params *pms, size_t x, size_t y)
 {
@@ -74,4 +59,47 @@ int	ft_map_to_screen(char **map, params *pms)
 	pms->m_width = ft_strlen(map[0]);
 	pms->m_height = ft_arraylen(map);
 	return (0);
+}
+int	ft_check_walls_around(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[0][i])
+	{
+		if (map[0][i] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (map[ft_arraylen(map) - 1][i])
+	{
+		if (map[ft_arraylen(map) - 1][i] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (map[i])
+	{
+		if ((map[i][0] != '1') || (map[i][ft_strlen(map[0]) - 1] != '1'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+size_t	ft_map_height(char	*map[])
+{
+	size_t	i;
+	size_t	compare;
+
+	i = 0;
+	compare = ft_strlen(map[i]);
+	while (map[i])
+	{
+		if	(ft_strlen(map[i]) != compare)
+			return (0);
+		i++;
+	}
+	return (i);
 }

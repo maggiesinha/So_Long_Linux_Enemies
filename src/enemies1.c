@@ -6,31 +6,11 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/30 12:07:51 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:40:07 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
-
-
-void	ft_print_map(params *pms)
-{
-	size_t	y = 0;
-	size_t	x = 0;
-
-	while ((pms->map)[y])
-	{
-		x = 0;
-		while ((pms->map)[y][x])
-		{
-			ft_printf("%c", (pms->map)[y][x]);
-			x++;
-		}
-		ft_printf("\n");
-		y++;
-	}
-	ft_printf("\n\n\n");
-}
 
 void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
 {
@@ -55,19 +35,6 @@ void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
 	mlx_put_image_to_window(pms->game, \
 	pms->win, pms->all->enemyr1->img, x * S, y * S);
 }
-
-void	ft_loop_map(params *pms, size_t *x, size_t *y)
-{
-	if (pms->map[*y][(*x) + 1])
-		(*x)++;
-	else
-	{
-		(*y)++;
-		(*x) = 0;
-	}
-}
-
-
 
 void	ft_build_enemies(params *pms)
 {
@@ -97,7 +64,6 @@ void	ft_build_enemies(params *pms)
 	pms->bckg_n--;
 	free (xy);
 }
-
 
 void	ft_enemies(params *pms)
 {
