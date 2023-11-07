@@ -6,13 +6,19 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:29:13 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:56:58 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:45:10 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_set_enemy_up(params *pms, enemy *current, size_t x, size_t y)
+void	ft_set_frames(t_params *pms)
+{
+	ft_set_player_frames(pms);
+	ft_set_enemy_frames(pms);
+}
+
+void	ft_set_enemy_up(t_params *pms, t_enemy *current, size_t x, size_t y)
 {
 	current->e1_img = pms->all->enemyu1->img;
 	current->e2_img = pms->all->enemyu2->img;
@@ -28,7 +34,7 @@ void	ft_set_enemy_up(params *pms, enemy *current, size_t x, size_t y)
 	ft_map_characters(pms, x, y);
 }
 
-void	ft_set_enemy_down(params *pms, enemy *current, size_t x, size_t y)
+void	ft_set_enemy_down(t_params *pms, t_enemy *current, size_t x, size_t y)
 {
 	current->e1_img = pms->all->enemyd1->img;
 	current->e2_img = pms->all->enemyd2->img;
@@ -44,7 +50,7 @@ void	ft_set_enemy_down(params *pms, enemy *current, size_t x, size_t y)
 	ft_map_characters(pms, x, y);
 }
 
-void	ft_set_enemy_left(params *pms, enemy *current, size_t x, size_t y)
+void	ft_set_enemy_left(t_params *pms, t_enemy *current, size_t x, size_t y)
 {
 	current->e1_img = pms->all->enemyl1->img;
 	current->e2_img = pms->all->enemyl2->img;
@@ -60,7 +66,7 @@ void	ft_set_enemy_left(params *pms, enemy *current, size_t x, size_t y)
 	ft_map_characters(pms, x, y);
 }
 
-void	ft_set_enemy_right(params *pms, enemy *current, size_t x, size_t y)
+void	ft_set_enemy_right(t_params *pms, t_enemy *current, size_t x, size_t y)
 {
 	current->e1_img = pms->all->enemyr1->img;
 	current->e2_img = pms->all->enemyr2->img;

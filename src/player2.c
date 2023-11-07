@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:50:59 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:49:58 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t	ft_find_player_y(char **map)
 	return (0);
 }
 
-void	ft_print_moves(params *pms)
+void	ft_print_moves(t_params *pms)
 {
 	static int	moves = 0;
 	char		*move_count;

@@ -6,13 +6,13 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:40:59 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:46:33 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_enemy_not_move(params *pms, enemy *current)
+void	ft_enemy_not_move(t_params *pms, t_enemy *current)
 {
 	current->e1_img = pms->all->enemyr1->img;
 	current->e2_img = pms->all->enemyr2->img;
@@ -22,7 +22,8 @@ void	ft_enemy_not_move(params *pms, enemy *current)
 	current->i_ysignal = 0;
 }
 
-void	ft_enemy_directions(params *pms, int dir, enemy *current, size_t xy[2])
+void	ft_enemy_directions(t_params *pms, int dir, \
+t_enemy *current, size_t xy[2])
 {
 	if (dir == UP && (pms->map[xy[1] - 1][xy[0]] == '0' || \
 		pms->map[xy[1] - 1][xy[0]] == 'P'))
@@ -40,9 +41,9 @@ void	ft_enemy_directions(params *pms, int dir, enemy *current, size_t xy[2])
 		ft_enemy_not_move(pms, current);
 }
 
-void	ft_set_enemy_frames(params *pms)
+void	ft_set_enemy_frames(t_params *pms)
 {
-	enemy	*current;
+	t_enemy	*current;
 	int		dir;
 	size_t	xy[2];
 

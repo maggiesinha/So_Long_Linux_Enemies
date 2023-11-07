@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maggie <maggie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:39:06 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/12 00:38:55 by maggie           ###   ########.fr       */
+/*   Updated: 2023/11/07 11:00:23 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int				ft_printf(const char *string, ...);
 
 // Extra
 
-char	**ft_split_fail_on_divider(char const *s, char c);
-size_t	ft_arraylen(char **array);
-void	ft_free_arraystring(char **array);
+char			**ft_split_fail_on_divider(char const *s, char c);
+size_t			ft_arraylen(char **array);
+void			ft_free_arraystring(char **array);
 
 #endif

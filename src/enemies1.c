@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemies.c                                          :+:      :+:    :+:   */
+/*   enemies1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:20:48 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:40:07 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:57:39 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
+void	ft_add_enemy(t_params *pms, t_enemy *current_enemy, size_t x, size_t y)
 {
-	enemy	*current;
+	t_enemy	*current;
 
 	current_enemy->x = x;
 	current_enemy->y = y;
@@ -36,9 +36,9 @@ void	ft_add_enemy(params *pms, enemy *current_enemy, size_t x, size_t y)
 	pms->win, pms->all->enemyr1->img, x * S, y * S);
 }
 
-void	ft_build_enemies(params *pms)
+void	ft_build_enemies(t_params *pms)
 {
-	enemy	*current_enemy;
+	t_enemy	*current_enemy;
 	size_t	place;
 	size_t	*xy;
 
@@ -47,7 +47,7 @@ void	ft_build_enemies(params *pms)
 		return ;
 	xy[0] = 1;
 	xy[1] = 1;
-	current_enemy = malloc(sizeof(enemy));
+	current_enemy = malloc(sizeof(t_enemy));
 	if (!current_enemy)
 		return ;
 	place = rand() % pms->bckg_n;
@@ -65,7 +65,7 @@ void	ft_build_enemies(params *pms)
 	free (xy);
 }
 
-void	ft_enemies(params *pms)
+void	ft_enemies(t_params *pms)
 {
 	size_t			i;
 
@@ -73,7 +73,7 @@ void	ft_enemies(params *pms)
 	pms->enemies_n = (pms->bckg_n) / ENEMY_RATIO;
 	if (!(pms->enemies_n))
 		return ;
-	pms->enemy_list = malloc(sizeof(enemy));
+	pms->enemy_list = malloc(sizeof(t_enemy));
 	if (!(pms->enemy_list))
 		return ;
 	pms->enemy_list->head = NULL;

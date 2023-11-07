@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:59:15 by maggie            #+#    #+#             */
-/*   Updated: 2023/11/06 11:41:41 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:46:56 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ size_t	ft_count_collectibles(char **map)
 	}
 	return (collectibles);
 }
+
 char	**ft_map_copy(char **map)
 {
-	char **map_copy;
+	char	**map_copy;
 	size_t	i;
 
 	i = 0;
@@ -51,7 +52,7 @@ char	**ft_map_copy(char **map)
 	return (map_copy);
 }
 
-int	ft_floodfill(params *pms)
+int	ft_floodfill(t_params *pms)
 {
 	char	**map_copy;
 	int		*exit;

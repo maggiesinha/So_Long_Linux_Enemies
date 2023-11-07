@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:57:52 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/04 12:02:12 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:59:58 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_check_double_characters(char const *s, char c)
 	while (s && s[i])
 	{
 		if (s[i] == c && s[i + 1] && s[i + 1] == c)
-			return 0;
+			return (0);
 		i++;
 	}
 	return (1);

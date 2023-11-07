@@ -6,17 +6,19 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:21:52 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:46:11 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:48:21 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_print_map(params *pms)
+void	ft_print_map(t_params *pms)
 {
-	size_t	y = 0;
-	size_t	x = 0;
+	size_t	y;
+	size_t	x;
 
+	y = 0;
+	x = 0;
 	while ((pms->map)[y])
 	{
 		x = 0;
@@ -30,7 +32,8 @@ void	ft_print_map(params *pms)
 	}
 	ft_printf("\n\n\n");
 }
-void	ft_loop_map(params *pms, size_t *x, size_t *y)
+
+void	ft_loop_map(t_params *pms, size_t *x, size_t *y)
 {
 	if (pms->map[*y][(*x) + 1])
 		(*x)++;
@@ -40,7 +43,8 @@ void	ft_loop_map(params *pms, size_t *x, size_t *y)
 		(*x) = 0;
 	}
 }
-char	*ft_map_to_string(char *line, char *temp, char* map_string, int map_fd)
+
+char	*ft_map_to_string(char *line, char *temp, char *map_string, int map_fd)
 {
 	while (line)
 	{
@@ -53,7 +57,7 @@ char	*ft_map_to_string(char *line, char *temp, char* map_string, int map_fd)
 	return (map_string);
 }
 
-char	**ft_map_to_array(params *pms, const char *file)
+char	**ft_map_to_array(t_params *pms, const char *file)
 {
 	int		map_fd;
 	char	*line;
@@ -81,9 +85,9 @@ char	**ft_map_to_array(params *pms, const char *file)
 	return (map_array);
 }
 
-int	ft_map_comp_check(char **map, params *pms)
+int	ft_map_comp_check(char **map, t_params *pms)
 {
-	map_stuff	maps;
+	t_map_stuff	maps;
 
 	ft_memset(&maps, 0, sizeof(maps));
 	while (map[maps.i])

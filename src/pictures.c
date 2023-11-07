@@ -6,19 +6,19 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:27:37 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:07:10 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:58:26 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-image	*ft_make_picture_xpm(char *relative_path, params *par)
+t_image	*ft_make_picture_xpm(char *relative_path, t_params *par)
 {
-	image	*pic;
+	t_image	*pic;
 	int		img_width;
 	int		img_height;
 
-	pic = malloc(sizeof(image));
+	pic = malloc(sizeof(t_image));
 	if (!pic)
 		return (0);
 	pic->img = mlx_xpm_file_to_image(par->game, relative_path, &img_width, \
@@ -28,7 +28,7 @@ image	*ft_make_picture_xpm(char *relative_path, params *par)
 	return (pic);
 }
 
-void	ft_build_all_images_player(params *pms, pictures *comps)
+void	ft_build_all_images_player(t_params *pms, t_pictures *comps)
 {
 	comps->btfly_pu = ft_make_picture_xpm("Images/btfly_pu.xpm", pms);
 	comps->btfly_pu2 = ft_make_picture_xpm("Images/btfly_pu2.xpm", pms);
@@ -48,7 +48,7 @@ void	ft_build_all_images_player(params *pms, pictures *comps)
 	comps->btfly_pr4 = ft_make_picture_xpm("Images/btfly_pr4.xpm", pms);
 }
 
-void	ft_build_all_images_enemy(params *pms, pictures *comps)
+void	ft_build_all_images_enemy(t_params *pms, t_pictures *comps)
 {
 	comps->enemyl1 = ft_make_picture_xpm("Images/enemy_l1.xpm", pms);
 	comps->enemyl2 = ft_make_picture_xpm("Images/enemy_l2.xpm", pms);
@@ -64,11 +64,11 @@ void	ft_build_all_images_enemy(params *pms, pictures *comps)
 	comps->enemydeath_r = ft_make_picture_xpm("Images/enemydeath_r.xpm", pms);
 }
 
-pictures	*ft_build_all_images(params *pms)
+t_pictures	*ft_build_all_images(t_params *pms)
 {
-	pictures	*comps;
+	t_pictures	*comps;
 
-	comps = malloc(sizeof(pictures));
+	comps = malloc(sizeof(t_pictures));
 	if (!comps)
 		return (0);
 	comps->bckg = ft_make_picture_xpm("Images/bckg.xpm", pms);

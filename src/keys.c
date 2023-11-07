@@ -6,13 +6,13 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:59:15 by maggie            #+#    #+#             */
-/*   Updated: 2023/11/06 12:08:10 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:47:25 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-int	ft_key_press(int keycode, params *pms)
+int	ft_key_press(int keycode, t_params *pms)
 {
 	if (keycode == 0xff1b)
 		ft_close_window(pms);
@@ -27,7 +27,7 @@ int	ft_key_press(int keycode, params *pms)
 	return (0);
 }
 
-void	ft_key_up(params *pms)
+void	ft_key_up(t_params *pms)
 {
 	if (pms->key_press == UP)
 	{
@@ -42,7 +42,7 @@ void	ft_key_up(params *pms)
 	}
 }
 
-void	ft_key_down(params *pms)
+void	ft_key_down(t_params *pms)
 {
 	if (pms->key_press == DOWN)
 	{
@@ -57,7 +57,7 @@ void	ft_key_down(params *pms)
 	}
 }
 
-void	ft_key_left(params *pms)
+void	ft_key_left(t_params *pms)
 {
 	if (pms->key_press == LEFT)
 	{
@@ -72,7 +72,7 @@ void	ft_key_left(params *pms)
 	}
 }
 
-void	ft_key_right(params *pms)
+void	ft_key_right(t_params *pms)
 {
 	if (pms->key_press == RIGHT)
 	{

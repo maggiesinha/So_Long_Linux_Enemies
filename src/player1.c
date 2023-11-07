@@ -6,13 +6,13 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:49:46 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:49:47 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-void	ft_put_player(params *pms, size_t x, size_t y)
+void	ft_put_player(t_params *pms, size_t x, size_t y)
 {
 	if (pms->player_state == UP)
 		mlx_put_image_to_window(pms->game, \
@@ -28,7 +28,7 @@ void	ft_put_player(params *pms, size_t x, size_t y)
 			pms->win, pms->all->btfly_pr->img, x * S, y * S);
 }
 
-void	ft_eat_collectible(params *pms)
+void	ft_eat_collectible(t_params *pms)
 {
 	pms->collectibles--;
 	pms->map[pms->p_next_y][pms->p_next_x] = '0';
@@ -36,13 +36,17 @@ void	ft_eat_collectible(params *pms)
 	pms->map[pms->p_next_y][pms->p_next_x] = 'P';
 }
 
-void	ft_set_player_frames(params *pms)
+void	ft_keys(t_params *pms)
 {
 	ft_key_up(pms);
 	ft_key_down(pms);
 	ft_key_left(pms);
 	ft_key_right(pms);
+}
 
+void	ft_set_player_frames(t_params *pms)
+{
+	ft_keys(pms);
 	if (pms->map[pms->p_next_y][pms->p_next_x] == 'E' && pms->collectibles == 0)
 	{
 		mlx_put_image_to_window(pms->game, pms->win, \
@@ -51,7 +55,9 @@ void	ft_set_player_frames(params *pms)
 	}
 	else if (pms->map[pms->p_next_y][pms->p_next_x] == 'C')
 		ft_eat_collectible(pms);
-	else if (pms->map[pms->p_next_y][pms->p_next_x] == 'E' || pms->map[pms->p_next_y][pms->p_next_x] == 'B' || pms->map[pms->p_next_y][pms->p_next_x] == '1')
+	else if (pms->map[pms->p_next_y][pms->p_next_x] == 'E' || \
+	pms->map[pms->p_next_y][pms->p_next_x] == 'B' || \
+	pms->map[pms->p_next_y][pms->p_next_x] == '1')
 	{
 		pms->p_next_x = pms->p_x;
 		pms->p_next_y = pms->p_y;

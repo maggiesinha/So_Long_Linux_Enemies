@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:23:45 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/10/30 12:20:37 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:58:33 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	params		*pms;
+	t_params		*pms;
 
 	srand(time(NULL));
-	pms = malloc(sizeof(params));
+	pms = malloc(sizeof(t_params));
 	if (!pms)
 		return (1);
 	if (argc != 2)

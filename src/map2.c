@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:28:46 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/06 11:47:35 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:48:38 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/so_long.h"
 
-
-void	ft_map_characters(params *pms, size_t x, size_t y)
+void	ft_map_characters(t_params *pms, size_t x, size_t y)
 {
 	if (pms->map[y][x] == '0')
 	{
@@ -38,7 +37,7 @@ void	ft_map_characters(params *pms, size_t x, size_t y)
 			pms->win, pms->all->enemyr1->img, x * S, y * S);
 }
 
-int	ft_map_to_screen(char **map, params *pms)
+int	ft_map_to_screen(char **map, t_params *pms)
 {
 	size_t	x;
 	size_t	y;
@@ -60,9 +59,10 @@ int	ft_map_to_screen(char **map, params *pms)
 	pms->m_height = ft_arraylen(map);
 	return (0);
 }
+
 int	ft_check_walls_around(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[0][i])
@@ -97,7 +97,7 @@ size_t	ft_map_height(char	*map[])
 	compare = ft_strlen(map[i]);
 	while (map[i])
 	{
-		if	(ft_strlen(map[i]) != compare)
+		if (ft_strlen(map[i]) != compare)
 			return (0);
 		i++;
 	}
