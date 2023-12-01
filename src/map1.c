@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:21:52 by mvalerio          #+#    #+#             */
-/*   Updated: 2023/11/07 10:48:21 by mvalerio         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:21:58 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ char	**ft_map_to_array(t_params *pms, const char *file)
 	temp = (NULL);
 	map_string = ft_map_to_string(line, temp, map_string, map_fd);
 	map_array = ft_split_fail_on_divider(map_string, '\n');
+	free(map_string);
 	if (!map_array)
 		ft_errors(pms, "Error", 0);
-	free(map_string);
 	close (map_fd);
 	return (map_array);
 }
